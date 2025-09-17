@@ -1,0 +1,17 @@
+# Core libraries
+pandas==2.1.3
+numpy==1.26.2
+requests==2.31.0
+gspread==5.12.0
+gspread-dataframe==3.3.1
+
+# Parsers for pandas.read_html
+lxml==4.9.3
+beautifulsoup4==4.12.2
+
+# For gspread authentication
+google-auth-oauthlib==1.1.0
+
+# Added for BigQuery integration
+google-cloud-bigquery
+pyarrow

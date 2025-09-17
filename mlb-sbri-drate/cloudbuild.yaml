@@ -1,0 +1,99 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: mlb-sbri-drate-github
+  namespace: '1030536549630'
+  selfLink: /apis/serving.knative.dev/v1/namespaces/1030536549630/services/mlb-sbri-drate-github
+  uid: a8439fdc-5681-4838-8149-86ee48dfc86b
+  resourceVersion: AAY+9y/5BK0
+  generation: 2
+  creationTimestamp: '2025-09-17T03:53:57.012165Z'
+  labels:
+    gcb-trigger-id: a4562ffd-4961-4bc1-927a-3023a18ffec1
+    managed-by: gcp-cloud-build-deploy-cloud-run
+    gcb-trigger-region: global
+    cloud.googleapis.com/location: northamerica-northeast1
+  annotations:
+    serving.knative.dev/creator: chrisgrossi@gmail.com
+    serving.knative.dev/lastModifier: chrisgrossi@gmail.com
+    run.googleapis.com/client-name: cloud-console
+    run.googleapis.com/operation-id: 6a9f5346-ca5a-4d6d-8c75-e4ce842e5652
+    run.googleapis.com/ingress: all
+    run.googleapis.com/ingress-status: all
+    run.googleapis.com/invoker-iam-disabled: 'true'
+    run.googleapis.com/urls: '["https://mlb-sbri-drate-github-1030536549630.northamerica-northeast1.run.app","https://mlb-sbri-drate-github-mvlezmidna-nn.a.run.app"]'
+spec:
+  template:
+    metadata:
+      labels:
+        run.googleapis.com/startupProbeType: Default
+      annotations:
+        run.googleapis.com/client-name: cloud-console
+        autoscaling.knative.dev/maxScale: '20'
+        run.googleapis.com/startup-cpu-boost: 'true'
+    spec:
+      containerConcurrency: 80
+      timeoutSeconds: 300
+      serviceAccountName: 1030536549630-compute@developer.gserviceaccount.com
+      containers:
+      - name: placeholder-1
+        image: gcr.io/cloudrun/placeholder
+        ports:
+        - name: http1
+          containerPort: 8080
+        env:
+        - name: SERVICE_ACCOUNT_FILE
+          value: grossi-ai-2025-e4d3011e8d38.json
+        - name: GOOGLE_SHEET_KEY
+          value: 1_q0obQY7tEucuw9iikpDRRInVzaoOTjd-NiQ3OdrMbk
+        - name: SBRI_NFL_URL
+          value: https://sportsbetrhodeisland.com/cache/psmg/EN/127264.1.json
+        - name: SBRI_MLB_URL
+          value: https://sportsbetrhodeisland.com/cache/psmg/EN/120958.1.json
+        - name: DRATINGS_NFL_URL
+          value: https://www.dratings.com/predictor/nfl-football-predictions/
+        - name: DRATINGS_MLB_URL
+          value: https://www.dratings.com/predictor/mlb-baseball-predictions/
+        - name: TPT_NFL_URL
+          value: https://www.thepredictiontracker.com/prednfl.html
+        - name: FFWIN_NFL_URL
+          value: https://www.ff-winners.com/nfl-computer-game-picks/
+        - name: grossi-ai-2025 secret
+          valueFrom:
+            secretKeyRef:
+              key: '1'
+              name: grossi-ai-2025-e4d3011e8d38-json
+        resources:
+          limits:
+            cpu: 1000m
+            memory: 512Mi
+        startupProbe:
+          timeoutSeconds: 240
+          periodSeconds: 240
+          failureThreshold: 1
+          tcpSocket:
+            port: 8080
+  traffic:
+  - percent: 100
+    latestRevision: true
+status:
+  observedGeneration: 2
+  conditions:
+  - type: Ready
+    status: 'True'
+    lastTransitionTime: '2025-09-17T03:54:02.956973Z'
+  - type: ConfigurationsReady
+    status: 'True'
+    lastTransitionTime: '2025-09-17T03:54:01.666927Z'
+  - type: RoutesReady
+    status: 'True'
+    lastTransitionTime: '2025-09-17T03:54:02.914672Z'
+  latestReadyRevisionName: mlb-sbri-drate-github-00001-fmk
+  latestCreatedRevisionName: mlb-sbri-drate-github-00001-fmk
+  traffic:
+  - revisionName: mlb-sbri-drate-github-00001-fmk
+    percent: 100
+    latestRevision: true
+  url: https://mlb-sbri-drate-github-mvlezmidna-nn.a.run.app
+  address:
+    url: https://mlb-sbri-drate-github-mvlezmidna-nn.a.run.app
